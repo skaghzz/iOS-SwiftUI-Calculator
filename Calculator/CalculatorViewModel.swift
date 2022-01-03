@@ -16,8 +16,8 @@ class CalculatorViewModel: ObservableObject {
         Double(makingValue ?? "0")!
     }
     
-    private func formatForDisplay(_ number: Double) -> String {
-        return String(number)
+    private func formatForDisplay(_ number: Decimal) -> String {
+        return number.description
     }
     
     func displayValue() -> String {

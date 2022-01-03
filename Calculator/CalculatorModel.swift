@@ -5,8 +5,10 @@
 //  Created by dev on 2021/12/28.
 //
 
+import Foundation
+
 struct CalculatorModel {
-    private(set) var resultValue: Double = 0
+    private(set) var resultValue: Decimal = 0
     private var operation: CalculatorOperation?
     private var operand: Double?
     
@@ -18,7 +20,7 @@ struct CalculatorModel {
     
     mutating func updateOperand(operand: Double) {
         if resultValue == 0 {
-            resultValue = operand
+            resultValue = Decimal.init(operand)
         } else {
             self.operand = operand
         }
@@ -32,13 +34,13 @@ struct CalculatorModel {
         self.operand = operand
         switch operation {
         case .add:
-            resultValue += operand
+            resultValue += Decimal(operand)
         case .subtract:
-            resultValue -= operand
+            resultValue -= Decimal(operand)
         case .multiply:
-            resultValue *= operand
+            resultValue *= Decimal(operand)
         case .divide:
-            resultValue /= operand
+            resultValue /= Decimal(operand)
         case .none:
             break
         }
