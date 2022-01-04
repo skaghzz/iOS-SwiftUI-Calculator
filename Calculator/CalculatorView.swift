@@ -66,6 +66,7 @@ struct CalculatorView: View {
         case .equal:
             calculatorViewModel.eqaul()
         case .decimal:
+            calculatorViewModel.appendDecimal()
             break
         default:
             calculatorViewModel.appendNumber(item.rawValue)

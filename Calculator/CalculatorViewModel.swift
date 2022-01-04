@@ -47,12 +47,15 @@ class CalculatorViewModel: ObservableObject {
     }
     
     func negative() {
-        
         makingValue = String((-runningValue).description)
     }
     
     func percent() {
         makingValue = String((runningValue * 0.01).description)
+    }
+    
+    func appendDecimal() {
+        makingValue = "\(makingValue ?? "0")."
     }
     
     func operate(_ op: CalculatorOperation) {
