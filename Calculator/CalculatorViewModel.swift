@@ -12,8 +12,17 @@ class CalculatorViewModel: ObservableObject {
     @Published private var calculatorModel = CalculatorModel()
     @Published var makingValue: String?
     
-    var runningValue: Double {
-        Double(makingValue ?? "0")!
+    var runningValue: Decimal {
+        if let makingValue = makingValue {
+            do {
+                return try Decimal(makingValue, format: .number)
+            } catch {
+                return Decimal(0)
+            }
+        } else {
+            return Decimal(0)
+        }
+        
     }
     
     private func formatForDisplay(_ number: Decimal) -> String {
@@ -38,11 +47,12 @@ class CalculatorViewModel: ObservableObject {
     }
     
     func negative() {
-        makingValue = String(-runningValue)
+        
+        makingValue = String((-runningValue).description)
     }
     
     func percent() {
-        makingValue = String(runningValue * 0.01)
+        makingValue = String((runningValue * 0.01).description)
     }
     
     func operate(_ op: CalculatorOperation) {

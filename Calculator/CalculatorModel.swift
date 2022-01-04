@@ -10,7 +10,7 @@ import Foundation
 struct CalculatorModel {
     private(set) var resultValue: Decimal = 0
     private var operation: CalculatorOperation?
-    private var operand: Double?
+    private var operand: Decimal?
     
     mutating func reset() {
         resultValue = 0
@@ -18,9 +18,9 @@ struct CalculatorModel {
         operand = nil
     }
     
-    mutating func updateOperand(operand: Double) {
+    mutating func updateOperand(operand: Decimal) {
         if resultValue == 0 {
-            resultValue = Decimal.init(operand)
+            resultValue = operand
         } else {
             self.operand = operand
         }
@@ -30,17 +30,17 @@ struct CalculatorModel {
         self.operation = operation
     }
     
-    mutating func doCalculate(_ operand: Double) {
+    mutating func doCalculate(_ operand: Decimal) {
         self.operand = operand
         switch operation {
         case .add:
-            resultValue += Decimal(operand)
+            resultValue += operand
         case .subtract:
-            resultValue -= Decimal(operand)
+            resultValue -= operand
         case .multiply:
-            resultValue *= Decimal(operand)
+            resultValue *= operand
         case .divide:
-            resultValue /= Decimal(operand)
+            resultValue /= operand
         case .none:
             break
         }
